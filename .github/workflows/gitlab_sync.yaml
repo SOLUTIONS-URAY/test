@@ -10,9 +10,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: action-pack/gitlab-sync@v3
+      - uses: net-engine/github-repository-sync-action@v1
         with:
-          username: ${{ secrets.GITLAB_USERNAME }}
-          url: https://gitlab.hackathon.uriit.ru/SOLUTIONS/test.git
-          # Personal access token from gitlab.com 
-          token: ${{ secrets.GITLAB_TOKEN }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          target_repo_url: git@gitlab.hackathon.uriit.ru:2224/SOLUTIONS/test.git
