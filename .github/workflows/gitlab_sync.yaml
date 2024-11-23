@@ -8,9 +8,13 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: net-engine/github-repository-sync-action@v1
-        with:
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          target_repo_url: git@gitlab.hackathon.uriit.ru:2224/SOLUTIONS/test.git
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+      - name: Add remote
+        run: git remote add target git@gitlab.hackathon.uriit.ru:2224/SOLUTIONS/test.git
+      - name: Push
+        run: git push -u target ${BRANCH}
+        env:
+          BRANCH: ${{ steps.extract_branch.outputs.branch }}
