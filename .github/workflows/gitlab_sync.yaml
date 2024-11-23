@@ -12,8 +12,6 @@ jobs:
         shell: bash
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
-      - name: Add remote
-        run: git remote add target git@gitlab.hackathon.uriit.ru:2224/SOLUTIONS/test.git
       - name: Push
         run: git push -u target ${BRANCH}
         env:
