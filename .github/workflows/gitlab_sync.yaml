@@ -13,6 +13,6 @@ jobs:
       - uses: action-pack/gitlab-sync@v3
         with:
           username: ${{ secrets.GITLAB_USERNAME }}
-          url: https://gitlab.hackathon.uriit.ru/${{ github.repository }}.git
+          url: https://gitlab.hackathon.uriit.ru/SOLUTIONS/test.git
           # Personal access token from gitlab.com 
           token: ${{ secrets.GITLAB_TOKEN }}
