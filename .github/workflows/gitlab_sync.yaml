@@ -5,7 +5,7 @@ on: [push]
 jobs:
   sync:
     name: GitLab URIIT Sync
-    runs-on: self-hosted
+    runs-on: [ dev1 ]
     steps:
       - uses: actions/checkout@v4
         with:
